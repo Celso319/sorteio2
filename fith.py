@@ -13,7 +13,7 @@ def sortear_participantes(conexao, numero_sorteios, arquivo_saida):
     with psycopg2.connect(conexao) as conn:
         with conn.cursor() as cursor:
             # Consulta para obter os dados necessários
-            cursor.execute("SELECT nome_cadunico, nis_cadunico, cod_municipio_cadunico FROM goodcheck")
+            cursor.execute("SELECT nis_cadunico, nome_cadunico, cod_municipio_cadunico FROM goodcheck")
 
             # Obtém todos os participantes
             participantes = cursor.fetchall()
@@ -42,7 +42,7 @@ def sortear_participantes(conexao, numero_sorteios, arquivo_saida):
 
     # Escreve os dados no arquivo CSV
     with open(arquivo_saida, 'w', newline='') as csvfile:
-        campo_nomes = ['NIS', 'Nome', 'Organização']
+        campo_nomes = ['Código', 'Nome', 'Organização']
         writer = csv.writer(csvfile)
         writer.writerow(campo_nomes)
 
