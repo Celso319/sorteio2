@@ -19,8 +19,8 @@ def sortear_participantes(conexao, numero_sorteios, arquivo_saida):
             participantes = cursor.fetchall()
 
             # Conta o número de participantes por organização
-            for _, _, organizacao in participantes:
-                participantes_por_organizacao[organizacao] = participantes_por_organizacao.get(organizacao, []) + [(_, _, organizacao)]
+            for codigo, nome, organizacao in participantes:
+                participantes_por_organizacao[organizacao] = participantes_por_organizacao.get(organizacao, []) + [(codigo, nome, organizacao)]
 
             # Realiza os sorteios
             for _ in range(numero_sorteios):
